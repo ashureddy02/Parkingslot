@@ -31,6 +31,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    /** Optional; existing rows remain valid with null until updated. */
+    @Column(name = "vehicle_number")
+    private String vehicleNumber;
+
     // @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     // private List<ParkingSlot> parkingSlots;
 }

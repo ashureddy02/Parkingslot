@@ -1,10 +1,10 @@
 package com.parking.parkingbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.parking.parkingbackend.enums.SlotStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -18,7 +18,6 @@ public class ParkingSlot {
     @GeneratedValue
     private UUID id;
 
-    private String location;
     private String slotNumber;
 
     private int row;
@@ -28,9 +27,10 @@ public class ParkingSlot {
     @Enumerated(EnumType.STRING)
     private SlotStatus status;
 
-    // @ManyToOne
-    // @JoinColumn(name = "owner_id")
-    // private User owner;
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    private Location location;
 
     // @OneToMany(mappedBy = "parkingSlot", cascade = CascadeType.ALL)
     // private List<Booking> bookings;

@@ -10,4 +10,6 @@ import java.util.UUID;
 public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, UUID> {
 
     List<ParkingSlot> findByStatus(SlotStatus status);
+
+    boolean existsBySlotNumber(String slotNumber);
 }
